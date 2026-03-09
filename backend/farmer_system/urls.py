@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from farmers.views import FarmerList, FarmerCount
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/farmers/', FarmerList.as_view()),
     path('api/farmers/count/', FarmerCount.as_view()),
 ]
+
+
