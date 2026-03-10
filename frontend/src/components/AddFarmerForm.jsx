@@ -45,12 +45,12 @@ export default function AddFarmerForm({ onClose, onSuccess }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <h2>Ongeza Mkulima Mpya</h2>
+        <h2>Add New Farmer</h2>
         {error && <p className="error">{error}</p>}
 
         <form onSubmit={handleSubmit}>
           <label>
-            Jina:
+            Name:
             <input
               type="text"
               name="name"
@@ -61,7 +61,7 @@ export default function AddFarmerForm({ onClose, onSuccess }) {
           </label>
 
           <label>
-            Eneo (Location):
+            Location:
             <input
               type="text"
               name="location"
@@ -72,7 +72,7 @@ export default function AddFarmerForm({ onClose, onSuccess }) {
           </label>
 
           <label>
-            Mazao (Crops, e.g. mahindi, maharagwe):
+            Crops, e.g. mahindi, maharagwe:
             <input
               type="text"
               name="crops"
@@ -83,7 +83,7 @@ export default function AddFarmerForm({ onClose, onSuccess }) {
           </label>
 
           <label>
-            Mawasiliano (Contact, phone/email):
+            Contact, phone/email:
             <input
               type="text"
               name="contact"
@@ -95,10 +95,10 @@ export default function AddFarmerForm({ onClose, onSuccess }) {
 
           <div className="form-buttons">
             <button type="button" onClick={onClose} disabled={loading}>
-              Ghairi
+              Cancel
             </button>
             <button type="submit" disabled={loading}>
-              {loading ? 'Inahifadhi...' : 'Hifadhi'}
+              {loading ? 'Saving...' : 'Save'}
             </button>
           </div>
         </form>

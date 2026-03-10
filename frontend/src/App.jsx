@@ -5,17 +5,24 @@ import StatsCard from './components/StatsCard';
 import FarmersTable from './components/FarmersTable';
 import './styles/kenya-theme.css';
 import AddFarmerForm from './components/AddFarmerForm';
+import Reports from './components/Reports';
 
 function App() {
   const [farmers, setFarmers] = useState([]);
   const [count, setCount] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [showReports, setShowReports] = useState(false);
+
   const refreshFarmers = async () => {
     const res = await fetch('http://127.0.0.1:8000/api/farmers/');
     const data = await res.json();
     setFarmers(Array.isArray(data) ? data : []);
-  }
+  };
+
+  const onShowReports = () => {
+    setShowReports(true);
+  };
 
   useEffect(() => {
     // Fetch total count
@@ -33,32 +40,28 @@ function App() {
 
   return (
     <div className="app-wrapper">
-      {/* Mobile toggle button */}
-      <button 
-        className="menu-toggle"
-        onClick={() => setSidebarOpen(!sidebarOpen)}
-      >
-        {sidebarOpen ? '✕' : '≡'}
-      </button>
-
       {/* Sidebar */}
       <Sidebar 
-  isOpen={sidebarOpen} 
-  onAddClick={() => {
-    console.log("onAddClick called from App");
-    setShowForm(true);
-  }}
-/>
+        isOpen={sidebarOpen} 
+        onAddClick={() => setShowForm(true)} 
+        onShowReports={onShowReports} // Pass the function here
+      />
 
-{showForm && (
-  <AddFarmerForm
-    onClose={() => setShowForm(false)}
-    onSuccess={() => {
-      refreshFarmers();
-      setShowForm(false);
-    }}
-  />
-)}
+      <Reports 
+        isOpen={showReports}
+        onClose={() => setShowReports(false)}
+        totalFarmers={count}
+      />
+
+      {showForm && (
+        <AddFarmerForm
+          onClose={() => setShowForm(false)}
+          onSuccess={() => {
+            refreshFarmers();
+            setShowForm(false);
+          }}
+        />
+      )}
 
       {/* Main content */}
       <div className="main-area">
@@ -72,9 +75,34 @@ function App() {
           <FarmersTable farmers={farmers} />
         </main>
       </div>
+
+      {/* Reports Modal */}
+      {showReports && (
+        <div className="modal-overlay" onClick={() => setShowReports(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <h2>Ripoti za Wakulima</h2>
+            <p>Hii ni mahali pa ripoti za baadaye (kwa mfano: idadi kwa eneo, mazao maarufu, n.k.)</p>
+            
+            <ul style={{ margin: '1.5rem 0', lineHeight: '1.8' }}>
+              <li>Jumla ya wakulima: {count.toLocaleString()}</li>
+              <li>Wakulima wapya wiki hii: (coming soon)</li>
+              <li>Eneo lenye wakulima wengi zaidi: Mwatate (example)</li>
+              <li>Mazao maarufu: Mahindi, Maharage, Sisal</li>
+            </ul>
+
+            <div style={{ textAlign: 'right' }}>
+              <button 
+                onClick={() => setShowReports(false)}
+                style={{ padding: '10px 20px', background: '#ccc', border: 'none', borderRadius: '6px' }}
+              >
+                Funga
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-
 
 export default App;

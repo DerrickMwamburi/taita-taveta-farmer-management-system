@@ -4,7 +4,7 @@ export default function FarmersTable({ farmers }) {
   return (
     <div className="table-card">
       <div className="table-header">
-        Orodha ya Wakulima Waliosajiliwa
+      List of Registered Farmers
       </div>
       <div className="table-wrapper">
         <table>
@@ -20,7 +20,7 @@ export default function FarmersTable({ farmers }) {
             {farmers.length === 0 ? (
               <tr className="empty-state">
                 <td colSpan={4}>
-                  Hakuna mkulima aliyesajiliwa bado
+                No farmer registered yet
                 </td>
               </tr>
             ) : (
