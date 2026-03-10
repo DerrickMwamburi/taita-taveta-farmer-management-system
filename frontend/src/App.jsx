@@ -80,14 +80,15 @@ function App() {
       {showReports && (
         <div className="modal-overlay" onClick={() => setShowReports(false)}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <h2>Ripoti za Wakulima</h2>
-            <p>Hii ni mahali pa ripoti za baadaye (kwa mfano: idadi kwa eneo, mazao maarufu, n.k.)</p>
+          <h2>Farmers' Reports</h2>
+        <p>This is the place for future reports (for example: numbers by region, popular crops, etc.)</p>
+
             
             <ul style={{ margin: '1.5rem 0', lineHeight: '1.8' }}>
-              <li>Jumla ya wakulima: {count.toLocaleString()}</li>
-              <li>Wakulima wapya wiki hii: (coming soon)</li>
-              <li>Eneo lenye wakulima wengi zaidi: Mwatate (example)</li>
-              <li>Mazao maarufu: Mahindi, Maharage, Sisal</li>
+              <li>Total Farmers: {count.toLocaleString()}</li>
+              <li>New Farmers this week: (coming soon)</li>
+              <li>Area with the most Farmers: Mwatate (example)</li>
+              <li>Popular Crops: Mahindi, Maharage, Sisal</li>
             </ul>
 
             <div style={{ textAlign: 'right' }}>
@@ -95,7 +96,7 @@ function App() {
                 onClick={() => setShowReports(false)}
                 style={{ padding: '10px 20px', background: '#ccc', border: 'none', borderRadius: '6px' }}
               >
-                Funga
+                Close
               </button>
             </div>
           </div>
