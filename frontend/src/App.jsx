@@ -40,6 +40,12 @@ function App() {
 
   return (
     <div className="app-wrapper">
+      <button
+        className="menu-toggle"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+      >
+        {sidebarOpen ? '✕' : '≡'}
+      </button>
       {/* Sidebar */}
       <Sidebar 
         isOpen={sidebarOpen} 
