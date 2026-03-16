@@ -126,4 +126,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://taita-taveta-farmer-management-syst.vercel.app/",      # ← CHANGE TO YOUR ACTUAL VERCEL URL                         # optional: covers preview branches
+    "http://localhost:5173",                        # keep for local testing
+    "http://127.0.0.1:5173",
+]
