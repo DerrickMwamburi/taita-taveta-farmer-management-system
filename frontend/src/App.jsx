@@ -15,7 +15,7 @@ function App() {
   const [showReports, setShowReports] = useState(false);
 
   const refreshFarmers = async () => {
-    const res = await fetch('http://127.0.0.1:8000/api/farmers/');
+    const res = await fetch('https://taita-taveta-farmer-management-system.onrender.com/api/farmers/');
     const data = await res.json();
     setFarmers(Array.isArray(data) ? data : []);
   };
@@ -26,13 +26,13 @@ function App() {
 
   useEffect(() => {
     // Fetch total count
-    fetch('http://127.0.0.1:8000/api/farmers/count/')
+    fetch('https://taita-taveta-farmer-management-system.onrender.com/api/farmers/count/')
       .then(res => res.ok ? res.json() : Promise.reject(res))
       .then(data => setCount(data.count))
       .catch(err => console.error('Error fetching count:', err));
 
     // Fetch farmer list
-    fetch('http://127.0.0.1:8000/api/farmers/')
+    fetch('https://taita-taveta-farmer-management-system.onrender.com/api/farmers/')
       .then(res => res.ok ? res.json() : Promise.reject(res))
       .then(data => setFarmers(Array.isArray(data) ? data : []))
       .catch(err => console.error('Error fetching farmers:', err));
